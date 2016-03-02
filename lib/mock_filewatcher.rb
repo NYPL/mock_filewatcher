@@ -5,13 +5,18 @@ class MockFilewatcher
   def create_fake_message
     fake_checksum = Digest::MD5.new
     fake_checksum.update rand(2000).to_s
+    bag_path = "/bags/#{Faker::Lorem.words(2).join("/")}"
     filename = "#{Faker::Lorem.words(2).join}.mov"
 
     {:UUID => SecureRandom.uuid,
       :assetFileName => "#{filename}",
       :definition    => ["hd", "sd"].sample,
       :isInMMS       => [true, false].sample,
-      :pathToAsset   => "/bags/#{Faker::Lorem.words(2).join("/")}/#{filename}",
+      :width         => (500..1000).to_a.sample,
+      :height        => (500..1000).to_a.sample,
+      :size          => (1024..200000).to_a.sample,
+      :pathToBag     => bag_path,
+      :pathToAsset   => "#{bag_path}/#{filename}",
       :checksum      => fake_checksum.to_s,
       :metadata      => {
         :title => Faker::Lorem.words(rand(6)+1).join,
@@ -23,7 +28,7 @@ class MockFilewatcher
         :conditionNotes   => [Faker::Lorem.sentences(rand(2)+1).join(" "), nil ].sample,
         :contentNotes     => [Faker::Lorem.sentences(rand(2)+1).join(" "), nil ].sample,
         :otherNotes       => [Faker::Lorem.sentences(rand(2)+1).join(" "), nil ].sample,
-        :accessNotes      => [Faker::Lorem.sentences(rand(2)+1).join(" "), nil ].sample,
+        :accessNote       => [Faker::Lorem.sentences(rand(2)+1).join(" "), nil ].sample,
         :processingNotes  => [Faker::Lorem.sentences(rand(2)+1).join(" "), nil ].sample,
         :duration         => ["00:16:25:23", "01:1#{rand{8}+1}:25:23", "01:16:25:#{rand{9}}#{rand{9}}"].sample,
         :dateCaptured     => Faker::Date.backward(1000).strftime("%-m/%d/%y"),
