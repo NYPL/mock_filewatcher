@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["nodanaonlyzuul"]
   spec.email         = ["stephenschor@nypl.org"]
 
-  spec.summary       = %q{}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = %q{Generates a hash like a real FileWater does.}
+  spec.description   = %q{This is useful for tests}
   spec.homepage      = "https://github.com/NYPL/mock_filewatcher"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
