@@ -29,8 +29,13 @@ require 'json'
 
 my_mock_file_watcher = MockFilewatcher.new
 
-#Returns a hash
-my_mock_file_watcher.create_fake_message
+my_mock_file_watcher.create_fake_message #returns_hash
+
+# Or a different version of the filewatcher message
+my_mock_file_watcher = MockFilewatcher.new({message_version: "1.0"})
+my_mock_file_watcher.create_fake_message #Returns a hash
+
+
 
 #Returns a valid JSON string
 JSON.generate(my_mock_file_watcher.create_fake_message)
