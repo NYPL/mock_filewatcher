@@ -42,8 +42,8 @@ private
     elsif @options[:message_version] == "2.0"
       # new keys
       @message[:messageVersion] = "2.0"
-      @message[:metadata][:pathToPreservationMaster] = "TODO: will this be on paring lot or long term storage"
-      @message[:metadata][:pathToPreservationMaster] = "TODO: will this be on paring lot or long term storage"
+      @message[:metadata][:pathToPreservationMaster] = "#{@bag_path}/PreservationMasters/#{@file_name}"
+      @message[:metadata][:pathToServiceCopy]        = "#{@bag_path}/ServiceCopies/#{@file_name}"
       @message[:metadata][:classmark] = "* #{('A'..'Z').to_a.shuffle[0..4].join} #{('1'..'9').to_a.shuffle[0..2].join}"
       @message[:metadata][:cmsID] = "#{(1...10000).to_a.sample}"
       @message[:metadata][:nonCMSID] = "#{(1...10000).to_a.sample}"
