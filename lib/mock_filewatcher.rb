@@ -69,7 +69,7 @@ private
       :isInMMS       => [true, false].sample,
       :width         => (500..1000).to_a.sample,
       :height        => (500..1000).to_a.sample,
-      :size          => (1024..200000).to_a.sample,
+      :fileSize          => (1024..200000).to_a.sample,
       :pathToBag     => @bag_path,
       :checksum      => fake_checksum.to_s,
       :metadata      => {
