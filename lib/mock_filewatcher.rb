@@ -47,6 +47,8 @@ private
       @message[:metadata][:classmark] = "* #{('A'..'Z').to_a.shuffle[0..4].join} #{('1'..'9').to_a.shuffle[0..2].join}"
       @message[:metadata][:cmsID] = "#{(1...10000).to_a.sample}"
       @message[:metadata][:nonCMSID] = "#{(1...10000).to_a.sample}"
+      @message[:metadata][:nonCMSID] = "#{(1...10000).to_a.sample}"
+      @message[:metadata][:nonCMSItemID] = "#{(1...10000).to_a.sample}"
       @message[:metadata][:cmsCollectionID]= "#{(1...10000).to_a.sample}"
       @message[:metadata][:bnumber] = "B-#{(1...10000).to_a.sample}"
 
