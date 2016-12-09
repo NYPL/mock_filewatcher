@@ -33,7 +33,6 @@ private
       @message[:metadata][:fileName] = File.basename(@file_name, ".*")
       @message[:metadata][:extension] = File.extname(@file_name).gsub('.','')
       @message[:metadata][:processingNotes] = [Faker::Lorem.sentences(rand(2)+1).join(" "), nil ].sample
-      @message[:metadata][:audioCodecName] = ['ALAC', 'API', 'WMAL', 'AAL', nil].sample
 
       # These change type in newer versions
       @message[:metadata][:conditionNotes] = [Faker::Lorem.sentences(rand(2)+1).join(" "), nil ].sample
@@ -85,6 +84,7 @@ private
         :broadcastStandard  => ['NTSC', 'PAL', nil].sample,
         :color              => ['b/w', 'color', nil].sample,
         :fileFormat         => ['MPEG-4', 'MOV', 'OGG', nil].sample,
+        :audioCodecName     => ['ALAC', 'API', 'WMAL', 'AAL', nil].sample,
         :videoCodecName     => ['AJA 10-bit 4:2:2 Component YCbCr', nil, "DXA", 'non-ISO MPEG-2.5'].sample,
         :contentNotes     => [Faker::Lorem.sentences(rand(2)+1).join(" "), nil ].sample,
         :accessNote       => [Faker::Lorem.sentences(rand(2)+1).join(" "), nil ].sample,
