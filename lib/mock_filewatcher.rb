@@ -4,16 +4,22 @@ require 'faker'
 class MockFilewatcher
   attr_reader :options, :message
 
-  SUPPORTED_VERSIONS = ["1.0", "2.0"]
+  SUPPORTED_VERSIONS     = ["1.0", "2.0"]
+  SUPPORTED_DISPOSITIONS = ["video", "audio"]
 
   # options:
   #  message_version: version of the filewatcher message
   def initialize(options = {})
-    default_options = {message_version: "1.0"}
+    default_options = {message_version: "1.0", bag_disposition: "video"}
     options = default_options.merge(options)
     throw "unsupported :message_version" unless SUPPORTED_VERSIONS.include?(options[:message_version])
+    throw "unsupported :bag_disposition" unless SUPPORTED_DISPOSITIONS.include?(options[:bag_disposition])
+
     @bag_path  = "/bags/#{Faker::Lorem.words(2).join("/")}"
-    @file_name = "#{Faker::Lorem.words(2).join}.mov"
+
+    file_base = Faker::Lorem.words(2).join
+    extension = options[:bag_disposition] == "video" ? 'mov' : 'wav'
+    @file_name = "#{file_base}.#{extension}"
     @options = options
 
   end
@@ -54,6 +60,17 @@ private
       note_proc = Proc.new{ Faker::Lorem.sentences(rand(2)+1).join(" ") }
       @message[:metadata][:conditionNotes] = [[note_proc.call, note_proc.call], []].sample
       @message[:metadata][:otherNotes] = [[note_proc.call, note_proc.call], []].sample
+
+      if @options[:bag_disposition] == "audio"
+        @message[:definition] = nil
+        @message[:pathToServiceCopy] = nil #audio bags only have PMs and EMs
+        @message[:height] = nil
+        @message[:width]  = nil
+        @message[:metadata][:videoCodecName]  = nil
+        @message[:metadata][:broadcastStandard]  = nil
+        @message[:metadata][:typeOfResource]  = 'audio recording'
+        @message[:metadata][:pathToEditMaster]  = "#{@bag_path}/EditMasters/#{@file_name}"
+      end
     end
   end
 
