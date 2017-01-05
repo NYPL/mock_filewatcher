@@ -33,9 +33,13 @@ my_mock_file_watcher.create_fake_message #returns_hash
 
 # Or a different version of the filewatcher message
 my_mock_file_watcher = MockFilewatcher.new({message_version: "1.0"})
-my_mock_file_watcher.create_fake_message #Returns a hash
+my_mock_file_watcher.create_fake_message #Returns a hash, mock of an Excel Video bag
 
+my_mock_file_watcher = MockFilewatcher.new({message_version: "2.0"})
+my_mock_file_watcher.create_fake_message #Returns a hash, mock of a JSON Video bag
 
+my_mock_file_watcher = MockFilewatcher.new({message_version: "2.0", bag_disposition: "audio"})
+my_mock_file_watcher.create_fake_message #Returns a hash, mock of a JSON Audio bag
 
 #Returns a valid JSON string
 JSON.generate(my_mock_file_watcher.create_fake_message)
