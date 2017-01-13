@@ -68,7 +68,7 @@ private
         @message[:width]  = nil
         @message[:metadata][:videoCodecName]  = nil
         @message[:metadata][:broadcastStandard]  = nil
-        @message[:metadata][:typeOfResource]  = 'audio recording'
+        @message[:metadata][:typeOfResource]  = 'sound recording'
         @message[:metadata][:pathToEditMaster]  = "#{@bag_path}/EditMasters/#{@file_name}"
       end
     end
