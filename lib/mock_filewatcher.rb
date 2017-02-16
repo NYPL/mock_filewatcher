@@ -24,7 +24,6 @@ class MockFilewatcher
 
   end
 
-  # TODO: This will become smarter to add/remove keys based on @options
   def create_fake_message
     @message = universal_key_values
     add_version_specific_key_value_pairs!
@@ -46,7 +45,14 @@ private
 
     elsif @options[:message_version] == "2.0"
       # new keys
+      if @options[:bag_disposition] == "audio"
+        @message[:editMasterChecksum] = Digest::MD5.new.update(rand(2000).to_s).to_s
+      else
+        @message[:editMasterChecksum] = nil
+      end
+
       @message[:messageVersion] = "2.0"
+      @message[:mediaType]      = @options[:bag_disposition]
       @message[:pathToPreservationMaster] = "#{@bag_path}/PreservationMasters/#{@file_name}"
       @message[:pathToServiceCopy]        = "#{@bag_path}/ServiceCopies/#{@file_name}"
       @message[:metadata][:classmark] = "* #{('A'..'Z').to_a.shuffle[0..4].join} #{('1'..'9').to_a.shuffle[0..2].join}"
