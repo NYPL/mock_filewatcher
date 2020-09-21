@@ -112,7 +112,7 @@ private
         :contentNotes     => [Faker::Lorem.sentences(number: rand(2)+1).join(" "), nil ].sample,
         :accessNote       => [Faker::Lorem.sentences(number: rand(2)+1).join(" "), nil ].sample,
         :duration         => ["00:16:25:23", "01:1#{rand{8}+1}:25:23", "01:16:25:#{rand{9}}#{rand{9}}"].sample,
-        :dateCaptured     => Faker::Date.backward(1000).strftime("%-m/%d/%y"),
+        :dateCaptured     => Faker::Date.backward(days: 1000).strftime("%-m/%d/%y"),
         :projectIdentifier => "#{Faker::Lorem.words(number: 1).first}.xls",
         :formerClassmark   => "* #{('A'..'Z').to_a.shuffle[0..4].join} #{('1'..'9').to_a.shuffle[0..2].join}"
         }
