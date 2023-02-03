@@ -60,7 +60,7 @@ private
       @message[:metadata][:nonCMSID] = "#{(1...10000).to_a.sample}"
       @message[:metadata][:nonCMSItemID] = "#{(1...10000).to_a.sample}"
       @message[:metadata][:cmsCollectionID]= "#{(1...10000).to_a.sample}"
-      @message[:metadata][:bnumber] = "b#{(10000000...999999999).to_a.sample}"
+      @message[:metadata][:bnumber] = "b#{(10000000...10010000).to_a.sample}"
 
       # Values have changed since v 1.0
       note_proc = Proc.new{ Faker::Lorem.sentences(number: rand(2)+1).join(" ") }
